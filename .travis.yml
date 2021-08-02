@@ -20,3 +20,15 @@ after_success:
   - docker push manishamagi7/multi-nginx
   - docker push manishamagi7/multi-server
   - docker push manishamagi7/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "udemycourse-docker-fibcalc"
+  env: "Udemycoursedockerfibcalc-env-1"
+  bucket_name: "elasticbeanstalk-us-east-2-802966836643"
+  bucket_path: "udemycourse-docker-fibcalc"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
