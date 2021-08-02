@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t manishamagi7/fibCalc-test -f ./client/Dockerfile.dev ./client
+
+script: 
+  - docker run -e CI=true manishamagi7/fibCalc-test npm test
+
+after_success:
+  - docker build -t manishamagi/multi-client ./client
+  - docker build -t manishamagi/multi-nginx ./nginx
+  - docker build -t manishamagi/multi-server ./server
+  - docker build -t manishamagi/multi-worker ./worker
+# Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# take those inmage and push them to docker hub
+  - docker push manishamagi7/multi-client
+  - docker push manishamagi7/multi-nginx
+  - docker push manishamagi7/multi-server
+  - docker push manishamagi7/multi-worker
