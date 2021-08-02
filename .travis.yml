@@ -9,10 +9,10 @@ script:
   - docker run -e CI=true manishamagi7/fibcalc-test npm test
 
 after_success:
-  - docker build -t manishamagi/multi-client ./client
-  - docker build -t manishamagi/multi-nginx ./nginx
-  - docker build -t manishamagi/multi-server ./server
-  - docker build -t manishamagi/multi-worker ./worker
+  - docker build -t manishamagi7/multi-client ./client
+  - docker build -t manishamagi7/multi-nginx ./nginx
+  - docker build -t manishamagi7/multi-server ./server
+  - docker build -t manishamagi7/multi-worker ./worker
 # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # take those inmage and push them to docker hub
