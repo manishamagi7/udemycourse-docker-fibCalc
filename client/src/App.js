@@ -8,6 +8,7 @@ function App() {
   return (
     <Router>
     <div className="App">
+      <p>Fibonacci Calculator</p>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Link to="/">Home</Link>
